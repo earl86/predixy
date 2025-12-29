@@ -238,6 +238,9 @@ void AcceptConnection::parse(Handler* h, Buffer* buf, int pos)
 bool AcceptConnection::send(Handler* h, Request* req, Response* res)
 {
     FuncCallTimer();
+    if (mRequests.empty()) {
+        return false;
+    }
     if (mRequests.front()->isDone()) {
         return true;
     }

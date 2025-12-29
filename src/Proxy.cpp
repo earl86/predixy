@@ -67,11 +67,11 @@ bool Proxy::init(int argc, char* argv[])
 {
     signal(SIGHUP, SIG_IGN);
     signal(SIGPIPE, SIG_IGN);
-    signal(SIGFPE, abortHandler);
-    signal(SIGILL, abortHandler);
-    signal(SIGSEGV, abortHandler);
-    signal(SIGABRT, abortHandler);
-    signal(SIGBUS, abortHandler);
+    //signal(SIGFPE, abortHandler);
+    //signal(SIGILL, abortHandler);
+    //signal(SIGSEGV, abortHandler);
+    //signal(SIGABRT, abortHandler);
+    //signal(SIGBUS, abortHandler);
     signal(SIGQUIT, abortHandler);
     signal(SIGINT, stopHandler);
     signal(SIGTERM, stopHandler);

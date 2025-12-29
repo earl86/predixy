@@ -370,7 +370,7 @@ void Handler::addAcceptSocket(int fd, sockaddr* addr, socklen_t len)
                 id(), c->peer(), c->fd(), StrError());
         AcceptConnectionAlloc::destroy(c);
     } else {
-        logNotice("h %d accept c %s %d assign to h %d", id(), c->peer(), fd, dst->id());
+        logNotice("h %d accept c %s %d assign to h %d, total %d", id(), c->peer(), fd, dst->id(), dst->mStats.clientConnections);
     }
 }
 
