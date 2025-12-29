@@ -4,7 +4,7 @@
 
 # build predixy
 FROM redis:7.0 as builder
-RUN sed -i "s|deb.debian.org|mirrors.aliyun.com|g" /etc/apt/sources.list
+RUN sed -i "s|deb.debian.org|mirrors.aliyun.com|g" /etc/apt/sources.list.d/debian.sources
 RUN apt-get clean && \
     apt-get update && \
     apt-get install -y gcc g++ make git
