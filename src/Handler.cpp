@@ -800,6 +800,11 @@ void Handler::handleResponse(ConnectConnection* s, Request* req, Response* res)
                 id(), req->id(), res->id(),
                 c->peer(), c->fd(), c->status(), c->statusStr());
         return;
+    } else if (c->empty()) {
+        logWarn("h %d ignore req %ld res %ld for c %s %d with status %d %s, AcceptConnection.empty()",
+                id(), req->id(), res->id(),
+                c->peer(), c->fd(), c->status(), c->statusStr());
+        return;
     }
     if (sp->type() == ServerPool::Cluster && res->type() == Reply::Error) {
         if (res->isMoved()) {
