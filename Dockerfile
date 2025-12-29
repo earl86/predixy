@@ -15,6 +15,10 @@ RUN cd /predixy && make clean && make
 
 # build predixy docker image
 FROM redis:7.0
+RUN sed -i "s|deb.debian.org|mirrors.aliyun.com|g" /etc/apt/sources.list.d/debian.sources
+RUN apt-get clean && \
+    apt-get update && \
+    apt-get install -y procps
 COPY --from=builder /predixy/src/predixy /usr/bin/predixy
 WORKDIR /
 ENTRYPOINT ["predixy"]
