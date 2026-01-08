@@ -82,7 +82,9 @@ void ServerPool::freeFailureServers()
 {
     static time_t last_show = time(NULL);
     if (difftime(time(NULL), last_show) > 60) {
-        logWarn("invalid servers: %d", mInvalidServs.size());
+        if (mInvalidServs.size() > 0) {
+            logWarn("invalid servers: %d", mInvalidServs.size());
+        }
         last_show = time(NULL);
     }
 
