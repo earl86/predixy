@@ -940,17 +940,14 @@ void Handler::infoRequest(Request* req, const String& key)
     Segment& body = res->body();
     Buffer* buf = body.fset(nullptr, "");
 
-    if (all || empty) {
-        buf = buf->fappend("# %s\n", "Server");
-        buf = buf->fappend("redis_version:%s\n", "5.0.4");
-        buf = buf->fappend("redis_mode:%s\n", "standalone");
-        buf = buf->fappend("\n");
-    }
-
 #define Scope(all, empty, header) ((all || empty || key.equal(header, true)) ? \
         (buf = buf->fappend("# %s\n", header)) : nullptr)
 
     if (all || empty || key.equal("Proxy", true) || key.equal("Server", true)) {
+        buf = buf->fappend("# %s\n", "Server");
+        buf = buf->fappend("redis_version:%s\n", "5.0.4");
+        buf = buf->fappend("redis_mode:%s\n", "standalone");
+        buf = buf->fappend("\n");
         buf = buf->fappend("# %s\n", "Proxy");
         buf = buf->fappend("Version:%s\n", _PREDIXY_VERSION_);
         buf = buf->fappend("Name:%s\n", mProxy->conf()->name());
